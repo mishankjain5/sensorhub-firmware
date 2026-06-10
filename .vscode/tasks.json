@@ -1,0 +1,31 @@
+{
+    "version": "2.0.0",
+    "options": {
+        "env": {
+            "Path": "${env:Path};C:\\Program Files (x86)\\Arm GNU Toolchain arm-none-eabi\\14.2 rel1\\bin;C:\\Program Files\\qemu"
+        }
+    },
+    "tasks": [
+        {
+            "label": "Build firmware (ARM)",
+            "type": "shell",
+            "command": "cmake -S . -B build-arm -G 'MinGW Makefiles' -DCMAKE_TOOLCHAIN_FILE=cmake/arm-none-eabi.cmake; cmake --build build-arm",
+            "group": { "kind": "build", "isDefault": true },
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "Run firmware in QEMU",
+            "type": "shell",
+            "command": "qemu-system-arm -M lm3s6965evb -nographic -kernel build-arm/sensorhub.elf",
+            "dependsOn": "Build firmware (ARM)",
+            "presentation": { "panel": "dedicated", "focus": true }
+        },
+        {
+            "label": "Run unit tests (host)",
+            "type": "shell",
+            "command": "cmake -S . -B build-host -G 'MinGW Makefiles'; cmake --build build-host; ctest --test-dir build-host --output-on-failure",
+            "group": "test",
+            "problemMatcher": ["$gcc"]
+        }
+    ]
+}

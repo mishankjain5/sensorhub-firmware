@@ -1,0 +1,9 @@
+{
+    "cmake.buildDirectory": "${workspaceFolder}/build-host",
+    "cmake.generator": "MinGW Makefiles",
+    "files.associations": {
+        "*.ld": "plaintext"
+    },
+    "C_Cpp.default.cStandard": "c99",
+    "C_Cpp.default.includePath": ["${workspaceFolder}/app", "${workspaceFolder}/target"]
+}
