@@ -96,8 +96,6 @@ app/      portable firmware logic, pure C99, no hardware includes
 target/   everything hardware: startup.c, lm3s6965.ld, uart.c,
           systick.c, main.c (the superloop)
 tests/    host-side unit tests (CTest)
-docs/     lessons/ 01-06 — a study track through the codebase
-          INTERVIEW.md — Q&A grounded in this code
 cmake/    arm-none-eabi toolchain file
 ```
 
